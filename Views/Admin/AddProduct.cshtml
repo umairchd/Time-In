@@ -1,0 +1,26 @@
+﻿@model prj.Models.Product
+
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="container" style="padding-left: 265px;">
+    <h2>AddProduct</h2>
+    <div class="row">
+        @using (Html.BeginForm("Add", "Admin", FormMethod.Post,htmlAttributes: new {@enctype="multipart/form-data"}))
+        {
+            @Html.LabelFor(x => x.Name);
+            @Html.TextBoxFor(x => x.Name);
+            @Html.LabelFor(x => x.Price);
+            @Html.TextBoxFor(x => x.Price);
+            @Html.LabelFor(x => x.Type);
+            @Html.TextBoxFor(x => x.Type);
+            @Html.LabelFor(x => x.Description);
+            @Html.TextBoxFor(x => x.Description);
+            <input type="file" multiple name="image"/>
+            <input type="submit" value="Add Product"/>
+        }
+    </div>
+</div>

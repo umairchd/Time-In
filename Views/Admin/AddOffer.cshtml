@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "AddOffer";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using prj.Models;
+@model prj.Models.Offer
+
+<h2>AddOffer</h2>
+
+<div class="container" style="padding-left: 265px;">
+    <h2>AddProduct</h2>
+    <div class="row">
+        @using (Html.BeginForm("AddOffers", "Admin", FormMethod.Post, htmlAttributes: new { @enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(x => x.Description);
+            @Html.TextBoxFor(x => x.Description);
+            <input type="file" name="image" />
+            <input type="submit" value="Add Offer" />
+        }
+    </div>
+</div>

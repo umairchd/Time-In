@@ -1,0 +1,58 @@
+﻿@model List<Product>
+@using prj.Models
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Products</h1>
+    <a href="@Url.Action("AddProduct","Admin")" class="btn btn-success btn-lg">Add Product</a>
+    <table class="table table-responsive">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+            @foreach (Product p in Model)
+            {
+                
+                    <tr>
+                        <td>@p.Id</td>
+                        <td>@p.Name</td>
+                        <td>@p.Price</td>
+                        <td>@p.Type</td>
+                        <td>@p.Description</td>
+                        @{ 
+                            int x = int.Parse(p.Image);
+                            int count = 1;
+                        }
+                        @for (int i = 0; i < x; i++)
+                        {
+                            <td><img class="img-responsive" alt="@p.Name" src="~/Uploads/@p.Id _@count-.jpg" width="50" ></td>
+                            count++;
+                        }
+                        
+                        <td>
+                            <form action="@Url.Action("Delete","Admin")" role="form" method="POST">
+                                <input type="hidden" value="@p.Id" name="Id"/>
+                                <input type="submit" class="btn btn-danger" value="Delete" />
+                            </form>
+                        </td>
+
+                        <td>
+                            <form action="@Url.Action("EditProduct","Admin")" role="form" method="POST">
+                                <input type="hidden" value="@p.Id" name="Id" />
+                                <input type="submit" class="btn btn-info" value="Edit" />
+                            </form>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>

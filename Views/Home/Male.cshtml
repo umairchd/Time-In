@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Male";
+}
+
+@model List<Product>
+@using prj.Models
+
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<div class="container">
+    <br />
+    <br />
+    <h1>Men</h1>
+    <div class="row">
+        @{ int temp = 0;}
+        @foreach (Product p in Model)
+        {
+            <div class="col-md-4 well">
+                <div class="col-md-6">
+                    @*<h2 class="text-uppercase">@p.Type</h2>*@
+                    <img style="padding-bottom: 5px ; width: 200px; height: 150px" data-toggle="modal" data-target="#myModal1-@temp" class="img-responsive img-rounded" src="~/Uploads/@p.Id _1-.jpg" />
+                    <div id="myModal1-@temp" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <center><img class="img-responsive" src="~/Uploads/@p.Id _1-.jpg" /></center>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @{ int count = 2;}
+                    @for (int i = 1; i < int.Parse(p.Image); i++)
+                    {
+                        <div class="col-md-4" style="padding: 5px"><img data-toggle="modal" data-target="#Modal-@i-@temp" class="img-responsive img-rounded" src="~/Uploads/@p.Id _@count-.jpg" height="50" width="50" /></div>
+
+                        <div id="Modal-@i-@temp" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <center><img class="img-responsive" src="~/Uploads/@p.Id _@count-.jpg" /></center>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        count++;
+                    }
+                </div>
+
+                <div class="col-md-6">
+                    <br />
+                    <br />
+                    <br />
+                    <p class="lead">Price : @p.Price</p>
+                    <p class="lead">Name: @p.Name</p>
+                    @*<p class="lead">Description: @p.Description</p>*@
+                </div>
+            </div>
+                    temp++;
+        }
+    </div>
+
+</div>

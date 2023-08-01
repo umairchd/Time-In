@@ -1,0 +1,48 @@
+﻿@using prj.Models
+@model List<user>
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Manage Users</h1>
+    <br />
+    <br />
+    @if (Model.Count == 0)
+    {
+        <h2>No Users subscribed</h2>
+    }
+    else
+    {
+
+        <table class="table table-responsive">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Date Of Birth</th>
+                    <th>Password</th>
+                </tr>
+
+                @foreach (user u in Model)
+                {
+
+                    <tr>
+                        <td>@u.Id</td>
+                        <td>@u.email</td>
+                        <td>@u.dob</td>
+                        <td>@u.password</td>
+                        <td>
+                            <form action="@Url.Action("DeleteUser", "Admin")" role="form" method="POST">
+                                <input type="hidden" value="@u.Id" name="Id" />
+                                <input type="submit" class="btn btn-danger" value="Delete" />
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

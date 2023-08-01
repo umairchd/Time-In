@@ -1,0 +1,66 @@
+﻿@using System.Web.UI.WebControls
+@model prj.Models.feedback
+@{
+    ViewBag.Title = "Feedback";
+}
+
+<div class="container">
+    @if (ViewBag.msg == true)
+    {
+        <div class="alert alert-dismissible alert-success">Feedback submitted</div>
+    }
+    @if (ViewBag.msg == false)
+    {
+        <div class="alert alert-dismissible alert-danger">Feedback not submitted</div>
+    }
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <br/>
+            <br />
+            <br />
+            <br />
+            <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
+            <form role="form" id="contactForm" method="POST" action="@Url.Action("FeedbackResponse","Home")">
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Title" name="Title" id="name" required data-validation-required-message="Please enter your name.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" placeholder="Email Address" name="Email" id="email" required data-validation-required-message="Please enter your email address.">
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        @Html.LabelFor(x=>x.Comments,htmlAttributes:new{@class="control-label"})
+                        @Html.TextAreaFor(x=>x.Comments, htmlAttributes: new
+                        {
+                            @rows="5",
+                            @class="form-control",
+                            @placeholder="Comments",
+                            @required="required"
+                        })
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <br>
+                <div id="success"></div>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button type="submit" class="btn btn-warning">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/Content/clean-blog.min.js"></script>

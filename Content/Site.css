@@ -1,0 +1,42 @@
+﻿body {
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+    padding: 65px;
+    background: url("/Content/img/watches/43.jpg");
+    background-size: 100% 100%;
+}
+
+#banner {
+    background: url("/Content/img/watches/45.gif");
+    background-size: 100% 100%;
+    height: 900px;
+}
+
+#homeBg {
+    background: url("/Content/img/watches/55.jpg") no-repeat ;
+    background-size: 100% 100%;
+    height: 600px;
+
+}
+
+#contactBg {
+    background: url("/Content/img/watches/47.jpg");
+    background-size: 100% 100%;
+    height: 400px;
+}
+
+#feedbackBg {
+    background: url("/Content/img/watches/46.jpg");
+    background-size: 100% 100%;
+    height: 400px;
+}
+
+#offerBg {
+    background: url("/Content/img/watches/53.jpg");
+    background-size: 100% 100%;
+    height: 300px;
+}
+
+
+

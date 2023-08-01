@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Search</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <select id="brand" name="brand" class="form-control">
+                <option value="">Any</option>
+                <option value="Rado">Rado</option>
+                <option value="Citizen">Citizen</option>
+                <option value="Rolex">Rolex</option>
+                <option value="Titan">Titan</option>
+                <option value="Quartz">Quartz</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select id="price" name="price" class="form-control">
+                <option value="0">Not Specified</option>
+                <option value="1">1000 - 1500</option>
+                <option value="2">1500 - 2500</option>
+                <option value="3">2500 - 3500</option>
+                <option value="4">Above 3500</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <select id="category" name="category" class="form-control">
+                <option value="men">Men</option>
+                <option value="women">Women<option>
+            </select>
+
+            
+        </div>
+        <div class="col-md-3">
+            <input id="SearchBtn" type="submit" value="Search" class="btn btn-info" />
+        </div>
+    </div>
+    <div id="head" class="row">
+        <h1 id="noData"></h1>
+    </div>
+    <div id="watches" class="row">
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#SearchBtn').click(function () {
+            var cat = $('#category').val();
+            var price = $('#price').val();
+            var brand = $('#brand').val();
+            var temp = "/Home/SearchWatches/?brand=" + brand + "&cat=" + cat + "&price=" + price;
+            $.getJSON("/Home/SearchWatches/?brand=" + brand + "&cat=" + cat + "&price=" + price,
+               function (data) {
+                   $('#watches').empty();
+
+
+                   if (!data) {
+                       $('#noData').text("No Results Found");
+                       return;
+                   }
+                   var count = 1;
+                $.each(data, function(i, item) {
+
+                    $('<div>').attr('class', 'col-md-4 well').attr('id', 'div' + count).appendTo('#watches');
+                    $('#div' + count).append('<img class="img-responsive" height="100" width="100" src="/Uploads/' + item.Id + " _1-.jpg" + '" />');
+                    $('#div' + count).append('<p class="lead">' + item.Name + '</p>');
+                    $('#div' + count).append('<p class="lead">' + item.Price + '</p>');
+                    $('#div' + count).append('<p class="lead">' + item.Type + '</p>');
+                    $('#div' + count).append('<p class="lead">' + item.Description + '</p>');
+                    
+                    count = count + 1;
+                });
+            });
+        });
+    })
+</script>

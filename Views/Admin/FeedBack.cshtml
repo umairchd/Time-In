@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "FeedBack";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using prj.Models
+@model List<feedback>
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">User Feedbacks</h1>
+    <table class="table table-responsive">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Title</th>
+                <th>Comments</th>
+            </tr>
+            @foreach (feedback p in Model)
+            {
+
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Email</td>
+                    <td>@p.Title</td>
+                    <td>@p.Comments</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,26 @@
+﻿@model prj.Models.Product
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container" style="padding-left: 200px">
+    <h2>Edit Product</h2>g
+    <div class="row">
+        @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, htmlAttributes: new { @enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(x=>x.Id);
+            @Html.LabelFor(x => x.Name);
+            @Html.EditorFor(x => x.Name);
+            @Html.LabelFor(x => x.Price);
+            @Html.EditorFor(x => x.Price);
+            @Html.LabelFor(x => x.Type);
+            @Html.EditorFor(x => x.Type);
+            @Html.LabelFor(x => x.Description);
+            @Html.EditorFor(x => x.Description);
+            <img class="img-responsive" height="300" width="300" src="~/Uploads/@Model.Image"/>
+            <input type="submit" value="Save Product" class="btn btn-success" />
+        }
+    </div>
+</div>

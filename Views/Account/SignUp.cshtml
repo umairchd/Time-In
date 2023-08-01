@@ -1,0 +1,61 @@
+﻿@model prj.Models.user
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<br />
+<br />
+<br />
+
+<div class="container-fluid">
+    <form class="form-signin" role="form" method="POST" action="@Url.Action("Register","Account")">
+        <div class="">
+            <div>
+                <fieldset>
+                    <span>Email *</span>
+                    <span id="emailErr"></span><br/>
+                    <input type="email" id="email" name="email" autocomplete="on" class="form-control" placeholder="Email" /><br />
+                    <span>Password *</span><input type="text" class="form-control" name="password" autocomplete="on" placeholder="Password"  /> <br />
+                    <span>Birthday *</span><input type="date" name="dob" class="form-control" placeholder="Date of birth" id="datePicker"  autocomplete="on" /><br />
+                    <input type="submit" class="btn btn-success" value="Sign Up"/>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="~/Scripts/jquery-2.1.4.js"></script>
+<script src="~/Scripts/jquery-ui-1.8.24.js"></script>
+<script>
+    $(document).ready(function () {
+        
+
+
+        $(".form-control")[0].focus();
+        $(function() {
+            $("#datePicker").datepicker(
+            {
+                changeMonth: true,
+                changeYear: true,
+                maxDate: new Date(),
+                dateFormat: "dd-mm-yy",
+                yearRange: "1900:2020"
+            });
+        });
+        
+
+        $('#email').blur(function () {
+            var email = $('#email').val();
+            
+            $.getJSON("/Account/IsUser?email=" + email,
+                function (data) {
+                    if (data) {
+                        $('#emailErr').text("User Already Registered");
+                        //return;
+                    } else {
+                        $('#emailErr').text("Available");
+                    }
+                });
+        });
+    })
+</script>
